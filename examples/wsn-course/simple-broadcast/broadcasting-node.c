@@ -1,6 +1,6 @@
 #include "contiki.h"        //  Sistema operativo
 #include "netstack.h"       //  Liberia para interactuar con la red
-#include "net/nullnet.h"    //  Libreria para que funcione sin capa de red(sin protocolos de la capa de aplicacion UDP, sin direcccionamiento)
+#include "net/nullnet/nullnet.h"    //  Libreria para que funcione sin capa de red(sin protocolos de la capa de aplicacion UDP, sin direcccionamiento)
 #include "string.h"         //  Libreria para poder incluir informacion en los mensajes de broadcast
  
 #include "sys/log.h"        //  Bitacoras
