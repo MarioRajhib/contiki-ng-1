@@ -1,7 +1,7 @@
 #include "contiki.h"        //  Sistema operativo
-#include "netstack.h"       //  Liberia para interactuar con la red
+#include "net/netstack.h"       //  Liberia para interactuar con la red
 #include "net/nullnet/nullnet.h"    //  Libreria para que funcione sin capa de red(sin protocolos de la capa de aplicacion UDP, sin direcccionamiento)
-#include "string.h"         //  Libreria para poder incluir informacion en los mensajes de broadcast
+#include <string.h>         //  Libreria para poder incluir informacion en los mensajes de broadcast
  
 #include "sys/log.h"        //  Bitacoras
 #define LOG_MODULE "Broadcasting Node App" // Nombre
@@ -44,9 +44,11 @@ PROCESS_THREAD(broadcasting_node, ev, data)  // Declaracion del programa princip
         PROCESS_WAIT_EVENT_UNTIL(etimer_expired(&timer)); // cuando se expire el tiempo, mandar el broadcast
         LOG_INFO("sending %u\n", counter++);
 
-        memcpy(nullnet_but, &counter, sizeof(counter)); // copiar el numero que hay en nullnet
-        nullnet_len = sizeof(counter);                  
+        memcpy(nullnet_buf, &counter, sizeof(counter)); // copiar el numero que hay en nullnet
+        nullnet_len = sizeof(counter); 
+
         NETSTACK_NETWORK.output(NULL);                  // enviar paquete con el contenido de las variables
     }
+    
     PROCESS_END();                                      
 }
