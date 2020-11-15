@@ -48,6 +48,7 @@ PROCESS_THREAD(broadcasting_node, ev, data)  // Declaracion del programa princip
         nullnet_len = sizeof(counter); 
 
         NETSTACK_NETWORK.output(NULL);                  // enviar paquete con el contenido de las variables
+        etimer_reset(&timer);
     }
     
     PROCESS_END();                                      
